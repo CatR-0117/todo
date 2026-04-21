@@ -10,9 +10,19 @@ function addTask() {
   const li = document.createElement("li");
   li.innerHTML = `
         <div class="label"><input type="checkbox" class="checkBox">
-        ${input.value}</div>
+        <span class="taskText">${input.value}</span></div>
         <span class="deleteButton" onclick="this.parentElement.remove()">Delete</span>
     `;
+
+  const checkbox = li.querySelector(".checkBox");
+  checkbox.addEventListener("change", function() {
+    const taskText = li.querySelector(".taskText");
+    if (this.checked) {
+      taskText.classList.add("completed");
+    } else {
+      taskText.classList.remove("completed");
+    }
+  });
 
   taskList.appendChild(li);
   input.value = "";

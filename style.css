@@ -127,3 +127,9 @@ li {
   width: 20px;
   height: 20px;
 }
+.taskText {
+  transition: text-decoration 0.3s ease;
+}
+.taskText.completed {
+  text-decoration: line-through;
+}
