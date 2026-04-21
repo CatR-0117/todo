@@ -72,6 +72,10 @@ body {
   padding: 0 12px;
   cursor: pointer;
 }
+.buttons button.active {
+  background: rgba(60, 130, 246, 1);
+  color: white;
+}
 #description {
   color: rgba(107, 114, 128, 1);
   font-size: 14px;
