@@ -1,17 +1,19 @@
-// task tooldog -- biylsen, niit, idevhteig
-// task nemhed taskcontainer
-// taskcontainer text uurclugddug
-// task ustgadag -- 3 turluur 
-// section soligddog style uurckugdunu
-
-const taskInput = document.getElementById("taskInput");
-const taskList = document.getElementById("taskList");
-
 function addTask() {
-  const value = taskInput.value.trim();
-  if (value === "") return;
+  const input = document.getElementById("taskInput");
+  const taskList = document.getElementById("taskList");
+
+  if (input.value.trim() === "") {
+    alert("Please enter a task!");
+    return;
+  }
+
   const li = document.createElement("li");
-  li.textContent = value;
+  li.innerHTML = `
+        <div class="label"><input type="checkbox" class="checkBox">
+        ${input.value}</div>
+        <span class="deleteButton" onclick="this.parentElement.remove()">Delete</span>
+    `;
+
   taskList.appendChild(li);
-  taskInput.value = "";
+  input.value = "";
 }

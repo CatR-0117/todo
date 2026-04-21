@@ -9,21 +9,16 @@
   <body class="center">
     <div class="container">
       <p id="header">To-Do List</p>
-      <div class="text">
-        <input type="text" id="taskInput" placeholder="Task..." />
-<button onclick="addTask()">Add</button>
-
-<ul id="taskList"></ul>
+      <div class="inputGroup">
+        <input type="text" id="taskInput" placeholder="Add a new task...">
+        <button onclick="addTask()">Add</button>
       </div>
       <div class="buttons">
         <button>All</button>
         <button>Active</button>
         <button>Completed</button>
       </div>
-      <div class="taskContainer">
-        <input type="checkbox" name="checkbox" id="checkBox">
-        <label for="checkbox">hdsbfhdsb</label>
-      </div>
+      <ul id="taskList"></ul>
       <p id="description">No tasks yet. Add one above!</p>
       <p id="footer">Powered by <span>Pinecone academy</span></p>
     </div>
