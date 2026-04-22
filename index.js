@@ -12,7 +12,7 @@ function addTask() {
         <span class="deleteButton" onclick="this.parentElement.remove()">Delete</span>
     `;
   const checkbox = li.querySelector(".checkBox");
-  checkbox.addEventListener("change", function() {
+  checkbox.addEventListener("change", function () {
     const taskText = li.querySelector(".taskText");
     if (this.checked) {
       taskText.classList.add("completed");
@@ -24,34 +24,43 @@ function addTask() {
   input.value = "";
 }
 function filterTasks(filter) {
-  const tasks = document.querySelectorAll("#taskList li");
-  tasks.forEach(task => {
-    const checkbox = task.querySelector(".checkBox");
-    const isCompleted = checkbox.checked;
+  var tasks = document.querySelectorAll("#taskList li");
+  tasks.forEach(function(task) {
+    var isCompleted = task.querySelector(".checkBox").checked;
     if (filter === "all") {
       task.style.display = "flex";
-    } else if (filter === "active") {
-      task.style.display = isCompleted ? "none" : "flex";
-    } else if (filter === "completed") {
-      task.style.display = isCompleted ? "flex" : "none";
+      return;
     }
+    if (filter === "active" && isCompleted) {
+      task.style.display = "none";
+      return;
+    }
+    if (filter === "completed" && !isCompleted) {
+      task.style.display = "none";
+      return;
+    }
+    task.style.display = "flex";
   });
 }
 function setActiveButton(buttonId) {
-  document.querySelectorAll(".buttons button").forEach(btn => btn.classList.remove("active"));
+  document.querySelectorAll(".buttons button").forEach(function (btn) {
+    btn.classList.remove("active");
+  });
   document.getElementById(buttonId).classList.add("active");
 }
-document.getElementById("allButton").addEventListener("click", () => {
+document.getElementById("allButton").addEventListener("click", function () {
   filterTasks("all");
   setActiveButton("allButton");
 });
-document.getElementById("activeButton").addEventListener("click", () => {
+document.getElementById("activeButton").addEventListener("click", function () {
   filterTasks("active");
   setActiveButton("activeButton");
 });
-document.getElementById("completedButton").addEventListener("click", () => {
-  filterTasks("completed");
-  setActiveButton("completedButton");
-});
+document
+  .getElementById("completedButton")
+  .addEventListener("click", function () {
+    filterTasks("completed");
+    setActiveButton("completedButton");
+  });
 filterTasks("all");
 setActiveButton("allButton");
