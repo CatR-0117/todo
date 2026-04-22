@@ -1,3 +1,16 @@
+function updateDescription() {
+  const taskList = document.getElementById("taskList");
+  const description = document.getElementById("description");
+  const tasks = taskList.querySelectorAll("li");
+  const completedTasks = taskList.querySelectorAll(".checkBox:checked");
+  
+  if (tasks.length === 0) {
+    description.textContent = "No tasks yet. Add one above!";
+  } else {
+    description.textContent = `${completedTasks.length} of ${tasks.length} tasks completed`;
+  }
+}
+
 function addTask() {
   const input = document.getElementById("taskInput");
   const taskList = document.getElementById("taskList");
@@ -19,9 +32,16 @@ function addTask() {
     } else {
       taskText.classList.remove("completed");
     }
+    updateDescription();
+  });
+  const deleteButton = li.querySelector(".deleteButton");
+  deleteButton.addEventListener("click", function () {
+    li.remove();
+    updateDescription();
   });
   taskList.appendChild(li);
   input.value = "";
+  updateDescription();
 }
 function filterTasks(filter) {
   var tasks = document.querySelectorAll("#taskList li");
