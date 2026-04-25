@@ -3,11 +3,19 @@ function updateDescription() {
   const description = document.getElementById("description");
   const tasks = taskList.querySelectorAll("li");
   const completedTasks = taskList.querySelectorAll(".checkBox:checked");
+  const deleteAllContainer = document.querySelector('.deleteAllContainer');
+  const taskDiv = document.querySelector('.task');
   
   if (tasks.length === 0) {
     description.textContent = "No tasks yet. Add one above!";
+    deleteAllContainer.style.display = 'none';
+    taskDiv.style.justifyContent = 'center';
+    description.style.textAlign = 'center';
   } else {
     description.textContent = `${completedTasks.length} of ${tasks.length} tasks completed`;
+    deleteAllContainer.style.display = 'block';
+    taskDiv.style.justifyContent = 'space-between';
+    description.style.marginLeft = '16px';
   }
 }
 
@@ -61,6 +69,16 @@ function filterTasks(filter) {
     }
     task.style.display = "flex";
   });
+}
+function deleteCompletedTasks() {
+  const tasks = document.querySelectorAll("#taskList li");
+  tasks.forEach(function(task) {
+    const checkbox = task.querySelector(".checkBox");
+    if (checkbox.checked) {
+      task.remove();
+    }
+  });
+  updateDescription();
 }
 function setActiveButton(buttonId) {
   document.querySelectorAll(".buttons button").forEach(function (btn) {
